@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 
 const ContactForm = (props) => {
+  // breaking up form state peices into individaul pieces
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
 
@@ -11,10 +12,9 @@ const ContactForm = (props) => {
     e.preventDefault();
     console.log("submit");
   };
+
+  // generic handle change function
   const handleChange = (e) => {
-    console.log(e.target);
-    console.log(e.target.value);
-    console.log(e.target.name);
     // {name,phone}
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
