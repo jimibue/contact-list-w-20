@@ -1,4 +1,4 @@
-const { List, Image } = require("semantic-ui-react");
+const { List, Image, Button, Icon } = require("semantic-ui-react");
 
 // => ( ) implict multine return no need for 'return'
 const Contact = ({ name, phone }) => (
@@ -10,6 +10,10 @@ const Contact = ({ name, phone }) => (
     <List.Content>
       <List.Header>{name}</List.Header>
       <List.Description>{phone}</List.Description>
+    </List.Content>
+    <List.Content floated="right">
+      <Button icon="pencil" />
+      <Button icon="trash" color="red" />
     </List.Content>
   </List.Item>
 );

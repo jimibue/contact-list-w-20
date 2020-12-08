@@ -9,8 +9,12 @@ const ContactForm = (props) => {
   const [contact, setContact] = useState({ fname: "", phone: "" });
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("submit");
+    // e.preventDefault(); don't need with semantic Form
+    // props.addContact({ name: name, phone: phone });
+    // short hand if key value have same name on objects
+    props.addContactYo({ name, phone });
+    setName("");
+    setPhone("");
   };
 
   // generic handle change function
@@ -20,7 +24,7 @@ const ContactForm = (props) => {
   };
 
   return (
-    <Form unstackable onSubmit={handleSubmit}>
+    <Form unstackable onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
       <Form.Group widths={2}>
         <Form.Input
           // onChange={handleChange}
@@ -48,7 +52,9 @@ const ContactForm = (props) => {
         />
       </Form.Group>
       {/* <Form.Checkbox label="I agree to the Terms and Conditions" /> */}
-      <Button type="submit">Add Contact</Button>
+      <Button style={{ marginTop: "20px" }} type="submit">
+        Add Contact
+      </Button>
     </Form>
   );
 };

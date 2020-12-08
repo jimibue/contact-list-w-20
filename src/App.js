@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 // example of renaming imports
-import { Container, Header as Headerz } from "semantic-ui-react";
+import { Container, Divider, Header as Headerz } from "semantic-ui-react";
 // example of renaming defualt import
 import ContactList, { test as textz } from "./ContactList";
 import ContactForm from "./ContactForm";
@@ -17,13 +17,28 @@ class App extends React.Component {
     ],
   };
 
+  // expecting an object with name and phone keys
+  addContact = (contactObj) => {
+    // add a harcoded users, then worry about form
+    let newContact = {
+      id: Math.random(),
+      name: contactObj.name,
+      phone: contactObj.phone,
+    };
+
+    // how do I add a contact to state?
+    let contacts = [...this.state.contacts, newContact];
+    this.setState({ contacts: contacts });
+  };
+
   render() {
     // es6 destructing
     const { contacts } = this.state;
     return (
-      <Container>
-        <ContactForm />
+      <Container style={{ marginTop: "20px" }}>
         <Headerz as="h2">React Contact List</Headerz>
+        <ContactForm addContactYo={this.addContact} />
+        <Divider />
         {/* <ContactList listOfContacts={this.state.contacts} /> */}
         <ContactList listOfContacts={contacts} />
       </Container>

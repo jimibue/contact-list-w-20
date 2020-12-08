@@ -12,7 +12,7 @@ const Contacts = ({ listOfContacts }) => {
 
   return (
     <div>
-      <List>{renderContacts()}</List>
+      <List divided>{renderContacts()}</List>
     </div>
   );
 };
