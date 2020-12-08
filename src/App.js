@@ -6,6 +6,7 @@ import "./App.css";
 import { Container, Header as Headerz } from "semantic-ui-react";
 // example of renaming defualt import
 import ContactList, { test as textz } from "./ContactList";
+import ContactForm from "./ContactForm";
 
 class App extends React.Component {
   state = {
@@ -21,6 +22,7 @@ class App extends React.Component {
     const { contacts } = this.state;
     return (
       <Container>
+        <ContactForm />
         <Headerz as="h2">React Contact List</Headerz>
         {/* <ContactList listOfContacts={this.state.contacts} /> */}
         <ContactList listOfContacts={contacts} />
