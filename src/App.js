@@ -31,6 +31,15 @@ class App extends React.Component {
     this.setState({ contacts: contacts });
   };
 
+  updateContact = (updateContact) => {
+    // how do update my array contacts in functional js land
+    let contacts = this.state.contacts.map((c) =>
+      c.id === updateContact.id ? updateContact : c
+    );
+
+    this.setState({ contacts });
+  };
+
   render() {
     // es6 destructing
     const { contacts } = this.state;
@@ -38,9 +47,13 @@ class App extends React.Component {
       <Container style={{ marginTop: "20px" }}>
         <Headerz as="h2">React Contact List</Headerz>
         <ContactForm addContactYo={this.addContact} />
+        <div onClick={this.updateContact}>update</div>
         <Divider />
         {/* <ContactList listOfContacts={this.state.contacts} /> */}
-        <ContactList listOfContacts={contacts} />
+        <ContactList
+          listOfContacts={contacts}
+          updateHandler={this.updateContact}
+        />
       </Container>
     );
   }

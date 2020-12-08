@@ -3,8 +3,8 @@ import { Button, Form } from "semantic-ui-react";
 
 const ContactForm = (props) => {
   // breaking up form state peices into individaul pieces
-  const [phone, setPhone] = useState("");
-  const [name, setName] = useState("");
+  const [phone, setPhone] = useState(props.phone ? props.phone : "");
+  const [name, setName] = useState(props.name ? props.name : "");
 
   const [contact, setContact] = useState({ fname: "", phone: "" });
 
@@ -12,7 +12,11 @@ const ContactForm = (props) => {
     // e.preventDefault(); don't need with semantic Form
     // props.addContact({ name: name, phone: phone });
     // short hand if key value have same name on objects
-    props.addContactYo({ name, phone });
+    if (props.id) {
+      props.editContactYo({ name, phone, id: props.id });
+    } else {
+      props.addContactYo({ name, phone });
+    }
     setName("");
     setPhone("");
   };
@@ -53,7 +57,7 @@ const ContactForm = (props) => {
       </Form.Group>
       {/* <Form.Checkbox label="I agree to the Terms and Conditions" /> */}
       <Button style={{ marginTop: "20px" }} type="submit">
-        Add Contact
+        {props.id ? "Edit Contact" : "Add Contact"}
       </Button>
     </Form>
   );
