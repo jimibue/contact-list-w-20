@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// example of renaming imports
+import { Container, Header as Headerz } from "semantic-ui-react";
+// example of renaming defualt import
+import ContactList, { test as textz } from "./ContactList";
+
+class App extends React.Component {
+  state = {
+    contacts: [
+      { id: 1, name: "Jerry", phone: "801-121-5656" },
+      { id: 2, name: "George", phone: "626-567-1872" },
+      { id: 3, name: "Cosmo", phone: "802-134-9876" },
+    ],
+  };
+
+  render() {
+    // es6 destructing
+    const { contacts } = this.state;
+    return (
+      <Container>
+        <Headerz as="h2">React Contact List</Headerz>
+        {/* <ContactList listOfContacts={this.state.contacts} /> */}
+        <ContactList listOfContacts={contacts} />
+      </Container>
+    );
+  }
 }
 
 export default App;
