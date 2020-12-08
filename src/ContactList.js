@@ -2,11 +2,18 @@ import { Header, List } from "semantic-ui-react";
 import Contact from "./Contact";
 
 // takes contact and loops over them
-const Contacts = ({ listOfContacts, updateHandler }) => {
+const Contacts = ({ listOfContacts, updateHandler, remove }) => {
   let renderContacts = () => {
     return listOfContacts.map((c) => {
       // return <Contact key={c.id} name={c.name} phone={c.phone} id={c.id} />;
-      return <Contact key={c.id} {...c} updateHandler={updateHandler} />;
+      return (
+        <Contact
+          key={c.id}
+          {...c}
+          removeContact={remove}
+          updateHandler={updateHandler}
+        />
+      );
     });
   };
 

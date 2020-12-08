@@ -3,7 +3,12 @@ import logo from "./logo.svg";
 import "./App.css";
 
 // example of renaming imports
-import { Container, Divider, Header as Headerz } from "semantic-ui-react";
+import {
+  Button,
+  Container,
+  Divider,
+  Header as Headerz,
+} from "semantic-ui-react";
 // example of renaming defualt import
 import ContactList, { test as textz } from "./ContactList";
 import ContactForm from "./ContactForm";
@@ -15,6 +20,7 @@ class App extends React.Component {
       { id: 2, name: "George", phone: "626-567-1872" },
       { id: 3, name: "Cosmo", phone: "802-134-9876" },
     ],
+    showForm: false,
   };
 
   // expecting an object with name and phone keys
@@ -40,17 +46,27 @@ class App extends React.Component {
     this.setState({ contacts });
   };
 
+  deleteContact = (id) => {
+    let contacts = this.state.contacts.filter((c) => c.id !== id);
+    this.setState({ contacts });
+  };
+
+  toggleForm = () => {
+    this.setState({ showForm: !this.state.showForm });
+  };
+
   render() {
     // es6 destructing
-    const { contacts } = this.state;
+    const { contacts, showForm } = this.state;
     return (
       <Container style={{ marginTop: "20px" }}>
         <Headerz as="h2">React Contact List</Headerz>
-        <ContactForm addContactYo={this.addContact} />
-        <div onClick={this.updateContact}>update</div>
+        {showForm && <ContactForm addContactYo={this.addContact} />}
+        <Button icon={showForm ? "minus" : "plus"} onClick={this.toggleForm} />
         <Divider />
         {/* <ContactList listOfContacts={this.state.contacts} /> */}
         <ContactList
+          remove={this.deleteContact}
           listOfContacts={contacts}
           updateHandler={this.updateContact}
         />

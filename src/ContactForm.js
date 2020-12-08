@@ -14,6 +14,7 @@ const ContactForm = (props) => {
     // short hand if key value have same name on objects
     if (props.id) {
       props.editContactYo({ name, phone, id: props.id });
+      props.hideEditForm();
     } else {
       props.addContactYo({ name, phone });
     }

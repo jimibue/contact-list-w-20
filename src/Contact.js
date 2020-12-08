@@ -3,7 +3,7 @@ import ContactForm from "./ContactForm";
 const { List, Image, Button, Icon } = require("semantic-ui-react");
 
 // => ( ) implict multine return no need for 'return'
-const Contact = ({ name, phone, id, updateHandler }) => {
+const Contact = ({ name, phone, id, updateHandler, removeContact }) => {
   const [showForm, setShowForm] = useState(false);
   return (
     <List.Item>
@@ -17,7 +17,7 @@ const Contact = ({ name, phone, id, updateHandler }) => {
       </List.Content>
       <List.Content floated="right">
         <Button icon="pencil" onClick={() => setShowForm(!showForm)} />
-        <Button icon="trash" color="red" />
+        <Button icon="trash" color="red" onClick={() => removeContact(id)} />
       </List.Content>
       {showForm && (
         <ContactForm
@@ -25,6 +25,7 @@ const Contact = ({ name, phone, id, updateHandler }) => {
           id={id}
           name={name}
           phone={phone}
+          hideEditForm={() => setShowForm(false)}
         />
       )}
     </List.Item>
