@@ -61,7 +61,12 @@ class App extends React.Component {
     return (
       <Container style={{ marginTop: "20px" }}>
         <Headerz as="h2">React Contact List</Headerz>
-        {showForm && <ContactForm addContactYo={this.addContact} />}
+        {showForm && (
+          <ContactForm
+            hideAddForm={this.toggleForm}
+            addContactYo={this.addContact}
+          />
+        )}
         <Button icon={showForm ? "minus" : "plus"} onClick={this.toggleForm} />
         <Divider />
         {/* <ContactList listOfContacts={this.state.contacts} /> */}

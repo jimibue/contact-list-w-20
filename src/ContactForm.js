@@ -17,6 +17,7 @@ const ContactForm = (props) => {
       props.hideEditForm();
     } else {
       props.addContactYo({ name, phone });
+      props.hideAddForm();
     }
     setName("");
     setPhone("");
